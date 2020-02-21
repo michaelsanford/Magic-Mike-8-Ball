@@ -1,0 +1,134 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=450px, initial-scale=1">
+    <style>
+        :root {
+            --radius: 250px;
+            --triangle: 105px;
+        }
+
+        header {
+            position: absolute;
+        }
+
+        section {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        #ball {
+            border-radius: var(--radius)/var(--radius);
+            border: solid 100px black;
+            background-color: #192738;
+            width: var(--radius);
+            height: var(--radius);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        #ball:hover {
+            animation: shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
+            transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        @keyframes shake {
+
+            10%,
+            90% {
+                transform: translate3d(-1px, 0, 10px);
+            }
+
+            20%,
+            80% {
+                transform: translate3d(2px, 5px, 0);
+            }
+
+            30%,
+            50%,
+            70% {
+                transform: translate3d(-8px, -2px, 0);
+            }
+
+            40%,
+            60% {
+                transform: translate3d(6px, 3px, 0);
+            }
+        }
+
+        #triangle {
+            opacity: 0;
+            width: 0;
+            height: 0;
+            border-left: var(--triangle) solid transparent;
+            border-right: var(--triangle) solid transparent;
+            border-top: 180px solid blue;
+            margin-top: 50px;
+
+            display: flex;
+            align-content: center;
+            justify-content: center;
+        }
+
+        #message {
+            color: white;
+            margin-top: -9em;
+            position: absolute;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: larger;
+            max-width: 7em;
+            text-align: center;
+        }
+
+        .show {
+            opacity: 1 !important;
+            transition: opacity 1s ease-in;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Magic Mike 8 Ball</h1>
+        <p>Consult my 10x-er 1-σ-most-common responses to technical questions</p>
+    </header>
+    <section>
+        <div id="ball">
+            <div id="triangle">
+                <p id="message"></span>
+            </div>
+        </div>
+    </section>
+</body>
+<script>
+    const r = [
+        "Try <br/>git pull -r",
+        "Amend your commit and force push",
+        "Bon matin!",
+        "Works on my machine",
+        "My 🐋 never breaks 🤷‍♂️",
+        "Check my answer on Stack Overflow",
+        "🤯🤯🤯",
+        "Fix your commit message",
+        "Architecture needs refactoring",
+        "Just make a component",
+        "CSS normalization FTW",
+        "Use semantic HTML5 elements",
+        "RTFM",
+    ];
+
+    document
+        .getElementById("ball")
+        .addEventListener("click", () => {
+            document.getElementById("message").innerHTML = r[Math.floor(Math.random() * r.length)]
+            document.getElementById("triangle").classList.add("show")
+        })
+</script>
+
+</html>
